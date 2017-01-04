@@ -441,6 +441,7 @@ func main() {
       Value: "english",
       Usage: "language for the greeting",
     },
+#### Ordering
   }
 
   app.Run(os.Args)
@@ -451,7 +452,6 @@ That flag can then be set with `--lang spanish` or `-l spanish`. Note that
 giving two different forms of the same flag in the same command invocation is an
 error.
 
-#### Ordering
 
 Flags for the application and commands are shown in the order they are defined.
 However, it's possible to sort them from outside this library by using `FlagsByName`
@@ -939,17 +939,15 @@ SUPPORT: support@awesometown.example.com
   // EXAMPLE: Override a template
   cli.AppHelpTemplate = `NAME:
    {{.Name}} - {{.Usage}}
+
 USAGE:
-   {{.HelpName}} {{if .VisibleFlags}}[global options]{{end}}{{if .Commands}} command
-[command options]{{end}} {{if
-.ArgsUsage}}{{.ArgsUsage}}{{else}}[arguments...]{{end}}
+   {{.HelpName}} {{if .VisibleFlags}}[global options]{{end}}{{if .Commands}} command [command options]{{end}} {{if .ArgsUsage}}{{.ArgsUsage}}{{else}}[arguments...]{{end}}
    {{if len .Authors}}
-AUTHOR(S):
+AUTHOR:
    {{range .Authors}}{{ . }}{{end}}
    {{end}}{{if .Commands}}
 COMMANDS:
-{{range .Commands}}{{if not .HideHelp}}   {{join .Names ", "}}{{ "\t"
-}}{{.Usage}}{{ "\n" }}{{end}}{{end}}{{end}}{{if .VisibleFlags}}
+{{range .Commands}}{{if not .HideHelp}}   {{join .Names ", "}}{{ "\t"}}{{.Usage}}{{ "\n" }}{{end}}{{end}}{{end}}{{if .VisibleFlags}}
 GLOBAL OPTIONS:
    {{range .VisibleFlags}}{{.}}
    {{end}}{{end}}{{if .Copyright }}
